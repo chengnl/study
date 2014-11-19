@@ -12,14 +12,15 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
 	public static void main(String[] args) throws InterruptedException {
-		PrintQueue  printQueue= new  PrintQueue();
+		PrintQueue  printQueue= new  MultiPrinter();
+		//PrintQueue  printQueue= new  OnePrinter();
 		Thread threads[] = new Thread[10];
         for(int i=0;i<10;i++){
         	threads[i] = new Thread(new PrintJob(printQueue),"THREAD"+i);
         }
         for(int i=0;i<10;i++){
         	threads[i].start();
-        	TimeUnit.MILLISECONDS.sleep(100);
+        	//TimeUnit.MILLISECONDS.sleep(100);
         }
 	}
 

@@ -38,3 +38,11 @@ fairness的内容是指全java语言的所有类中，那些可以阻塞多个�
 随着其他类的出现，Semaphore类的构造函数容许第二个参数。这个参数必需是 Boolean 值。如果你给的是 false 值，
 那么创建的semaphore就会在非公平模式下运行。如果你不使用这个参数，是跟给false值一样的结果。如果你给的是true值，
 那么你创建的semaphore就会在公平模式下运行。
+
+
+semaphores也可以用来保护多个资源的副本，也就是说当你有一个代码片段每次可以被多个线程执行。
+
+The acquire(), acquireUninterruptibly(), tryAcquire(),和release()方法有一个外加的包含一个int参数的版本。
+这个参数表示 线程想要获取或者释放semaphore的许可数。也可以这样说，这个线程想要删除或者添加到
+semaphore的内部计数器的单位数量。在这个例子中acquire(), acquireUninterruptibly(), 和tryAcquire() 方法, 
+如果计数器的值小于许可值，那么线程就会被阻塞直到计数器到达或者大于许可值。

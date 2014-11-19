@@ -1,7 +1,5 @@
 package syntool.semaphore;
 
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
 
 /**
  *@author chengnl
@@ -10,18 +8,6 @@ import java.util.concurrent.TimeUnit;
  *@version 1.0
  *@Description:TODO 类描述
  */
-public class PrintQueue {
-        private  Semaphore  semaphore = new Semaphore(1);
-        
-        public void print(String msg){
-        	try {
-				semaphore.acquire();
-				System.out.println(Thread.currentThread().getName()+":print msg ="+msg);
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}finally{
-				semaphore.release();
-			}
-        }
+public interface PrintQueue {
+        public void print(String msg);
 }
