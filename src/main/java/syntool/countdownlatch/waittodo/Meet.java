@@ -1,4 +1,4 @@
-package syntool.countdownlatch;
+package syntool.countdownlatch.waittodo;
 
 import java.util.concurrent.CountDownLatch;
 

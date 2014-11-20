@@ -1,7 +1,5 @@
-package syntool.countdownlatch;
+package syntool.countdownlatch.waittodo;
 
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 /**
  *@author chengnl
