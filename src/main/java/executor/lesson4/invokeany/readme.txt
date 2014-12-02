@@ -11,7 +11,7 @@ ThreadPoolExecutor类中的invokeAny()方法接收任务数列，并启动它们
 这 个示例有两个返回随机Boolean值的UserValidator对象。每个UserValidator对象被一个实现TaskValidator类的Callable对象使用。
 如果UserValidator类的validate()方法返回false，TaskValidator类将抛出异常。否则，它将返回true值。
 
-事例有两个任务，可以返回true值或抛出异常。有以下4种情况：
+示例有两个任务，可以返回true值或抛出异常。有以下4种情况：
 
     两个任务都返回ture。invokeAny()方法的结果是第一个完成任务的名称。
     第一个任务返回true，第二个任务抛出异常。invokeAny()方法的结果是第一个任务的名称。
