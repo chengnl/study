@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
 	public static void main(String[] args) {
-		ScheduledExecutorService executor=Executors.newScheduledThreadPool(1);
+		ScheduledThreadPoolExecutor executor=(ScheduledThreadPoolExecutor)Executors.newScheduledThreadPool(1);
 		System.out.printf("Main: Starting at: %s\n",new Date());
 	    ScheduledFuture<?> result=executor.scheduleAtFixedRate(new Task("test"),1,2 , TimeUnit.SECONDS);
 		
@@ -33,7 +34,7 @@ public class Main {
 		}
 		
 		executor.shutdown();
-		
+		//executor.setContinueExistingPeriodicTasksAfterShutdownPolicy(true);
 		try {
 			TimeUnit.SECONDS.sleep(5);
 			} catch (InterruptedException e) {
