@@ -1,6 +1,6 @@
 执行者分离任务的启动和结果的处理
-===============================
-
+========
+ ## 简介
 通常，当你使用执行者执行并发任务时，你将会提交 Runnable或Callable任务给这个执行者，并获取Future对象控制这个方法。你可以发现这种情况，
 你需要提交任务给执行者在一个对象中，而处理结果在另一个对象中。基于这种情况，Java并发API提供CompletionService类。
 
@@ -31,7 +31,7 @@ CompletionService类可以执行Callable和Runnable任务。在这个示例中�
     元素，并从列队中删除它。
     
    
- ## 1、完成一个任务处理一个任务 ，不用等待所有结束再处理
+ ##  1、完成一个任务处理一个任务 ，不用等待所有结束再处理
  ```   
  void solve(Executor e,
         Collection<Callable<Result>> solvers)
@@ -49,7 +49,7 @@ CompletionService类可以执行Callable和Runnable任务。在这个示例中�
   }}
    
   ```
-   ## 2、随机等待一个任务完成，处理下面的业务逻辑，取消其他任务
+   ##  2、随机等待一个任务完成，处理下面的业务逻辑，取消其他任务
    
     ```
      void solve(Executor e,
