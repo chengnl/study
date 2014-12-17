@@ -25,5 +25,5 @@ ForkJoinPool类同时允许任务的执行以异步的方式。你已经使用ex
     
 get()和join()有两个主要的区别：
 
-  join()方法不能被中断。如果你中断调用join()方法的线程，这个方法将抛出InterruptedException异常。
+   join()方法不能被中断。如果你中断调用join()方法的线程，这个方法将抛出InterruptedException异常。
 如果任务抛出任何未受检异常，get()方法将返回一个ExecutionException异常，而join()方法将返回一个RuntimeException异常。
