@@ -2,5 +2,6 @@ study
 =====
 
 日常学习
-<<Java 7 并发编程指南中文版>>
+
+学习:<<Java 7 Concurrency Cookbook>>
 
