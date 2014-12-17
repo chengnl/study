@@ -20,10 +20,10 @@ ForkJoinPool类同时允许任务的执行以异步的方式。你已经使用ex
 
 在这个示例中，你已经使用了join()方法来等待任务的结束，并获得它们的结果。对于这个目的，你也可以使用get()方法的两个版本之一：
 
-        get()：这个版本的get()方法，如果ForkJoinTask已经结束它的执行，则返回compute()方法的返回值，否则，等待直到它完成.
-        get(long timeout, TimeUnit unit)：这个版本的get()方法，如果任务的结果不可用，则在指定的时间内等待它。如果超时并且任务的结果仍不可用，这个方法返回null值。TimeUnit类是一个枚举类，包含以下常量：DAYS，HOURS，MICROSECONDS， MILLISECONDS，MINUTES， NANOSECONDS 和 SECONDS。    
-        
+       get()：这个版本的get()方法，如果ForkJoinTask已经结束它的执行，则返回compute()方法的返回值，否则，等待直到它完成。
+       get(long timeout, TimeUnit unit)：这个版本的get()方法，如果任务的结果不可用，则在指定的时间内等待它。如果超时并且任务的结果仍不可用，这个方法返回null值。TimeUnit类是一个枚举类，包含以下常量：DAYS，HOURS，MICROSECONDS， MILLISECONDS，MINUTES， NANOSECONDS 和 SECONDS。
+    
 get()和join()有两个主要的区别：
 
-        join()方法不能被中断。如果你中断调用join()方法的线程，这个方法将抛出InterruptedException异常。
+       join()方法不能被中断。如果你中断调用join()方法的线程，这个方法将抛出InterruptedException异常。
 如果任务抛出任何未受检异常，get()方法将返回一个ExecutionException异常，而join()方法将返回一个RuntimeException异常。
