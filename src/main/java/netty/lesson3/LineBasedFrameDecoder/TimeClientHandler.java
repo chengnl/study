@@ -1,4 +1,4 @@
-package netty.lesson3.helloworld;
+package netty.lesson3.LineBasedFrameDecoder;
 
 import java.io.UnsupportedEncodingException;
 

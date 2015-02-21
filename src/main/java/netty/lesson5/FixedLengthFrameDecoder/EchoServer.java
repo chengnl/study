@@ -1,6 +1,8 @@
-package netty.lesson3.helloworld;
+package netty.lesson5.FixedLengthFrameDecoder;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -8,16 +10,20 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.DelimiterBasedFrameDecoder;
+import io.netty.handler.codec.FixedLengthFrameDecoder;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 /**
  *@author chengnl
  *@date 2015年2月8日 下午3:56:18
  *@version 1.0
- *@Description:netty time server
+ *@Description:netty echo server
  */
-public class TimeServer {
+public class EchoServer {
 	
 	public void bind(int port) throws Exception{
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -26,7 +32,8 @@ public class TimeServer {
 			ServerBootstrap b = new ServerBootstrap();
 			b.group(bossGroup, workerGroup)
 			 .channel(NioServerSocketChannel.class)
-			 .option(ChannelOption.SO_BACKLOG, 1024)
+			 .option(ChannelOption.SO_BACKLOG, 100)
+			 .handler(new LoggingHandler(LogLevel.INFO))
 			 .childHandler(new ChildChannelHandler());
 			// 绑定端口，同步等待成功
 			ChannelFuture f = b.bind(port).sync();
@@ -44,9 +51,9 @@ public class TimeServer {
 
 		@Override
 		protected void initChannel(SocketChannel arg0) throws Exception {
-			arg0.pipeline().addLast(new LineBasedFrameDecoder(1024));
+			arg0.pipeline().addLast(new FixedLengthFrameDecoder(20));
 			arg0.pipeline().addLast(new StringDecoder());
-			arg0.pipeline().addLast(new TimeServerHandler());
+			arg0.pipeline().addLast(new EchoServerHandler());
 			
 		}
     	
@@ -61,7 +68,7 @@ public class TimeServer {
 				
 			}
 		}
-		new TimeServer().bind(port);
+		new EchoServer().bind(port);
 	}
 
 }
